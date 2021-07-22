@@ -21,10 +21,10 @@ namespace Palindromos
         public bool Validar()
         {
 
-            Text = Regex.Replace(Text,@"\s","");
-            Text = Regex.Replace(Text,@",","");
-            Text = Regex.Replace(Text, @"\.", "");
-            Text = QuitarTildes(Text);
+            Text = Regex.Replace(Text,@"\s",""); //Elimina todos los espacios
+            Text = Regex.Replace(Text,@",","");  //Elimina todas las comas
+            Text = Regex.Replace(Text, @"\.", "");//Elimina todos los puntos
+            Text = QuitarTildes(Text); //Elimina todas las tildes
             Text = Text.ToLower();
 
             string TextoRevers = Reverse(Text);
@@ -39,19 +39,22 @@ namespace Palindromos
             }
         }
 
+        //Funcion que Voltea el string y regresa el string alreves
         private static string Reverse(string Texto)
         {
             char[] TextoArray = Texto.ToCharArray();
             Array.Reverse(TextoArray);
             return new string(TextoArray);
         }
+
+        //Funcion que quita cualquer tilde a las palabras introducidas
         private static string QuitarTildes(string Texto)
         {
             return new String(
             Texto.Normalize(NormalizationForm.FormD)
             .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
             .ToArray()
-        )
+            )
         .Normalize(NormalizationForm.FormC);
         }
     }

@@ -28,7 +28,9 @@ namespace Palindromos
         //Funcion ejecutable para la primera opcion. Entrada por la BD
         private static void EntradaBD()
         {
-
+            Database DB = new Database();
+            DB.Ejecutar();
+            Console.WriteLine("Existen {0} palindromos",DB.contador);
         }
 
         //funcion ejecutabe para la 2da opcion
